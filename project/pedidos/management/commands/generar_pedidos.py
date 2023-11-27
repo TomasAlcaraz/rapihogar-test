@@ -8,15 +8,8 @@ from django.core.management import call_command
 class Command(BaseCommand):
     help = "Genera N pedidos aleatorios"
 
-    def add_arguments(self, parser):
-        parser.add_argument(
-            "cantidad_pedidos",
-            type=int,
-            help="Número de pedidos a generar (entre 1 y 100)",
-        )
-
     def handle(self, *args, **options):
-        cantidad_pedidos = options["cantidad_pedidos"]
+        cantidad_pedidos = int(input("Ingrese el número de pedidos a generar (entre 1 y 100): "))
 
         if not Technician.objects.exists() or not User.objects.exists():
             # comodidad para el desarrollo
