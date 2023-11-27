@@ -1,6 +1,7 @@
 from django.db import models
 from rapihogar.models import User, Scheme
 
+
 # Create your models here.
 class Pedido(models.Model):
     SOLICITUD = 0
@@ -16,7 +17,7 @@ class Pedido(models.Model):
     client = models.ForeignKey(User, verbose_name="cliente", on_delete=models.CASCADE)
     scheme = models.ForeignKey(Scheme, null=True, on_delete=models.CASCADE)
     hours_worked = models.IntegerField(default=0)
-    
+
     # new propeties
     title = models.CharField(max_length=100)
     description = models.TextField()
@@ -24,6 +25,6 @@ class Pedido(models.Model):
     status = models.CharField(max_length=50)
 
     class Meta:
-        app_label = "pedidos"
-        verbose_name_plural = "pedidos"
+        app_label = "rapihogar"
+        verbose_name = "Pedido"
         ordering = ("-id",)

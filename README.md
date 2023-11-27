@@ -27,8 +27,8 @@ test_web_1     python manage.py runserver ...   Up      0.0.0.0:8000->8000/tcp,:
 ```
 
 ```bash
-docker exec rapihogar-test-web-1  python manage.py  makemigrations rapihogar
-docker exec rapihogar-test-web-1  python manage.py  migrate
+docker exec rapihogar-test-web-1 python manage.py  makemigrations rapihogar
+docker exec rapihogar-test-web-1 python manage.py  migrate
 ```
 ### Cargar datos de pruebas
 ```bash

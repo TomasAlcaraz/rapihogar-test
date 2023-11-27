@@ -1,5 +1,6 @@
 from pathlib import Path
 import os
+from envs import DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USER
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -70,17 +71,18 @@ WSGI_APPLICATION = "rapihogar.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("DB_NAME", "postgres"),
-        "USER": os.getenv("DB_USER", "postgres"),
-        "HOST": os.getenv("DB_HOST", "db"),
-        "PASSWORD": os.getenv("DB_PASSWORD", "postgres"),
-        "PORT": os.getenv("DB_PORT", "5432"),
+        "NAME": DB_NAME,
+        "USER": DB_USER,
+        "HOST": DB_HOST,
+        "PASSWORD": DB_PASSWORD,
+        "PORT": DB_PORT,
     }
     # "default": {
     #     "ENGINE": "django.db.backends.sqlite3",
     #     "NAME": BASE_DIR / "db.sqlite3",
     # }
 }
+
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
