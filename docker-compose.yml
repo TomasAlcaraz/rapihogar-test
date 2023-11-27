@@ -8,6 +8,8 @@ services:
     depends_on:
       - web
     restart: "on-failure"
+    networks:
+      - rapihogar-network
   web:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
@@ -17,4 +19,26 @@ services:
       - "8000:8000"
     expose:
       - 8000
+    # env_file: .env
+    # depends_on:
+    #   - db
+    # links:
+    #   - db:db
+    networks:
+      - rapihogar-network
+  # db:
+  #   image: postgres:16
+  #   container_name: db
+  #   environment:
+  #     - POSTGRES_DB=${DB_NAME}
+  #     - POSTGRES_USER=${DB_USER}
+  #     - POSTGRES_PASSWORD=${DB_PASSWORD}
+  #   expose:
+  #     - 5432
+  #   networks:
+  #     - rapihogar-network
+
+networks:
+  rapihogar-network:
+    driver: bridge
 
