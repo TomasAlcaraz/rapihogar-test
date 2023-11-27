@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import Pedidos
+from .models import Pedido
 
 # Register your models here.
 
 """ Register models """
 
-admin.site.register(Pedidos)
+admin.site.register(Pedido)

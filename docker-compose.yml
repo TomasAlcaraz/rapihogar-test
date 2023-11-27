@@ -1,15 +1,14 @@
 version: "3"
 
 services:
-  nginx:
-    build: ./nginx
-    ports:
-      - 80:80
-    depends_on:
-      - web
-    restart: "on-failure"
-    networks:
-      - rapihogar-network
+  db:
+    image: postgres:16
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
   web:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
@@ -19,26 +18,23 @@ services:
       - "8000:8000"
     expose:
       - 8000
-    # env_file: .env
-    # depends_on:
-    #   - db
-    # links:
-    #   - db:db
-    networks:
-      - rapihogar-network
-  # db:
-  #   image: postgres:16
-  #   container_name: db
-  #   environment:
-  #     - POSTGRES_DB=${DB_NAME}
-  #     - POSTGRES_USER=${DB_USER}
-  #     - POSTGRES_PASSWORD=${DB_PASSWORD}
-  #   expose:
-  #     - 5432
-  #   networks:
-  #     - rapihogar-network
+    env_file: .env
+    depends_on:
+      - db
+  nginx:
+    build: ./nginx
+    ports:
+      - 80:80
+    volumes:
+      - static_volume:/home/app/web/staticfiles
+      - media_volume:/home/app/web/mediafiles
+    depends_on:
+      - web
+    restart: "on-failure"
 
-networks:
-  rapihogar-network:
-    driver: bridge
+
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:
 
