@@ -1,5 +1,5 @@
 from django.db import models
-from rapihogar.models import User, Scheme
+from rapihogar.models import User, Scheme, Technician
 
 
 # Create your models here.
@@ -16,6 +16,7 @@ class Pedido(models.Model):
     )
     client = models.ForeignKey(User, verbose_name="cliente", on_delete=models.CASCADE)
     scheme = models.ForeignKey(Scheme, null=True, on_delete=models.CASCADE)
+    technician = models.ForeignKey(Technician, on_delete=models.CASCADE)
     hours_worked = models.IntegerField(default=0)
 
     # new propeties

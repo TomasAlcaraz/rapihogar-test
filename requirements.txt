@@ -6,3 +6,4 @@ ipython
 psycopg2==2.9.9
 python-dotenv
 gunicorn===21.2.0
+faker

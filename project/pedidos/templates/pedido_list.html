@@ -1,14 +1,82 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Listado de Pedidos</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Helvetica', sans-serif;
+            margin: 20px;
+            background-color: #f8f9fa;
+        }
+
+        h3 {
+            margin-bottom: 20px;
+            color: #333;
+            font-family: 'Tahoma' (sans-serif);
+            border-bottom: 2px solid #003366; 
+            padding-bottom: 10px; 
+        }
+
+        table {
+            width: 70%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #003366;
+            color: #fff;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .principal_table{
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+    <title>Lista de pedidos</title>
 </head>
 <body>
-    <h1>Listado de Pedidos</h1>
-    <ul>
-        {% for pedido in pedidos %}
-            <li>{{ pedido.title }} - {{ pedido.client.username }} - {{ pedido.status }}</li>
-        {% endfor %}
-    </ul>
+
+<h3>Lista de pedidos</h3>
+<div class="principal_table">
+    <table>
+        <thead>
+            <tr>
+                <th>Técnico</th>
+                <th>Pedido</th>
+                <th>Descripción</th>
+                <th>Lugar</th>
+                <th>Status</th>
+                <th>Usuario</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pedido in pedidos %}
+                <tr>
+                    <td>{{ pedido.technician }}</td>
+                    <td>{{ pedido.title }}</td>
+                    <td>{{ pedido.description }}</td>
+                    <td>{{ pedido.location }}</td>
+                    <td>{{ pedido.status }}</td>
+                    <td>{{ pedido.client.username }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
 </body>
 </html>

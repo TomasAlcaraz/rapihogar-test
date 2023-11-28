@@ -1,0 +1,14 @@
+from enum import Enum, auto
+
+
+class CiudadesCordoba(Enum):
+    CORDOBA = "CORDOBA"
+    VILLA_CARLOS_PAZ = "VILLA CARLOS PAZ"
+    RIO_CUARTO = "RIO CUARTO"
+    ALTA_GRACIA = "ALTA GRACIA"
+    JESUS_MARIA = "JESUS MARIA"
+    VILLA_MARIA = "VILLA MARIA"
+    LA_FALDA = "LA FALDA"
+    COSQUIN = "COSQUIN"
+    BELL_VILLE = "BELL VILLE"
+    RIO_SEGUNDO = "RIO SEGUNDO"

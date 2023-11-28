@@ -62,14 +62,32 @@ class Company(models.Model):
         verbose_name = _("Empresa")
         verbose_name_plural = _("Empresas")
 
+
 class Technician(models.Model):
     full_name = models.CharField(max_length=255)
     hours_worked = models.IntegerField(default=0)
+    total_to_charge = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    num_orders = models.IntegerField(default=0)
 
     def __str__(self):
         return self.full_name
 
+    def update_totals(self):
+        self.total_to_charge = self.calculate_total_to_charge()
+        self.num_orders = self.pedido_set.count()
+        self.save()
+
+    def calculate_total_to_charge(self):
+        if self.hours_worked <= 14:
+            return self.hours_worked * 200 * 0.85
+        elif 15 <= self.hours_worked <= 28:
+            return self.hours_worked * 250 * 0.84
+        elif 29 <= self.hours_worked <= 47:
+            return self.hours_worked * 300 * 0.83
+        else:
+            return self.hours_worked * 350 * 0.82
+
     class Meta:
         app_label = "rapihogar"
-        verbose_name = _("Técnicos Schema")
+        verbose_name = "Técnico"
         verbose_name_plural = "Técnicos"
