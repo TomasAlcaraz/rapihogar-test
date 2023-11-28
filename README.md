@@ -1,3 +1,35 @@
+# TEST RAPIHOGAR: Tomás Alcaraz
+
+Te dejo algunas indicaciones para quizás facilitarte el trabajo de revisar el codigo
+
+## Corre docker
+```bash
+docker-compose build
+docker-compose up
+docker-compose ps
+```
+
+## Superusuario
+```bash
+docker exec -it `nombre_container_web` python manage.py createsuperuser
+```
+
+## Crear Pedidos - Incluye creacion de Tecnicos y Usuarios si aun no haz creado ninguno
+
+```bash
+docker-compose exec `nombre_container_web` python manage.py generar_pedidos
+```
+
+## Crear Técnicos
+
+Puedes crear técnicos fácilmente utilizando el siguiente comando:
+
+```bash
+docker-compose exec `nombre_container_web` python manage.py create_random_technicians `numero de técnicos`
+```
+#
+#
+#
 # Rapihogar - Prueba técnica #
 
 ## Instalar Docker
