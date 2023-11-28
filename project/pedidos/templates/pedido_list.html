@@ -41,6 +41,13 @@
         tbody tr:nth-child(even) {
             background-color: #f9f9f9;
         }
+
+        a {
+            text-decoration: none;
+            font-weight: bold;
+            color: cadetblue;
+        }
+
         .principal_table{
             display: flex;
             justify-content: center;
@@ -61,6 +68,7 @@
                 <th>Lugar</th>
                 <th>Status</th>
                 <th>Usuario</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -72,6 +80,9 @@
                     <td>{{ pedido.location }}</td>
                     <td>{{ pedido.status }}</td>
                     <td>{{ pedido.client.username }}</td>
+                    <td>
+                        <a href="{% url 'pedidos:pedido-update' pedido.id %}">Editar</a>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>
