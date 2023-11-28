@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Inicio</title>
+    <style>
+        body {
+            font-family: 'Helvetica', sans-serif;
+            margin: 20px;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        h1 {
+            color: #003366;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #003366;
+            font-weight: bold;
+        }
+
+        .endpoints {
+            width: 100%;
+            margin-left: 3rem;
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bienvenido a la Página de Inicio</h1>
+    <h2>Endpoints:</h2>
+    <div class="endpoints">
+        <ul>
+            <div>
+                <li><a href="{% url 'admin:index' %}">Admin</a></li>
+                <li><a href="{% url 'pedidos:pedido_list' %}">Pedidos</a></li>
+                <li><a href="{% url 'technician-list' %}">Listado de Técnicos</a></li>
+                <li><a href="{% url 'reports:report_templete' %}">Informes</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <p>Desarrollado por Tomás Alcaraz</p>
+</body>
+</html>

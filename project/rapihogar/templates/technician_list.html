@@ -105,19 +105,6 @@
     <a href="{% url 'technician-list' %}" class="clear-filter-button">↻</a>
 </form>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        var clearFilterButton = document.querySelector(".clear-filter-button");
-
-        if (clearFilterButton) {
-            clearFilterButton.addEventListener("click", function(event) {
-                event.preventDefault();
-                window.location.href = "{% url 'technician-list' %}";
-            });
-        }
-    });
-</script>
-
 <div class="principal_table">
     <table>
         <thead>

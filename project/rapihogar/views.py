@@ -1,10 +1,7 @@
 from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
 from .models import Technician
 from pedidos.models import Pedido
 from rest_framework import viewsets
-from .serializers import TechnicianSerializer
 from django.shortcuts import render
 from django.db.models import Q
 
@@ -13,10 +10,9 @@ class TechnicianListView(APIView):
     template_name = "technician_list.html"
 
     def get(self, request):
-        # Obtener el parámetro de búsqueda del nombre desde la consulta GET
+
         search_name = request.GET.get("search_name", "")
 
-        # Filtrar técnicos por parte del nombre
         technicians = Technician.objects.filter(Q(full_name__icontains=search_name))
 
         technician_data = []

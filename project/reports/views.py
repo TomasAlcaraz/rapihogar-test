@@ -1,11 +1,11 @@
 from django.shortcuts import render
-
-# Create your views here.
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rapihogar.models import Technician
 from django.db.models import Avg
+
+# Create your views here.
 
 
 class ReportView(APIView):
@@ -18,12 +18,12 @@ class ReportView(APIView):
                 "total_to_charge__avg"
             ]
 
-             # Obtener los técnicos que cobraron menos que el promedio
+             # Técnicos que cobraron menos que el promedio
             below_average_technicians = Technician.objects.filter(
                 total_to_charge__lt=average_charge
             ).values("full_name", "total_to_charge")
 
-            # Obtener al técnico que cobró el monto más bajo
+            # Técnico que cobró el monto más bajo
             lowest_charge_technician = (
                 Technician.objects.filter(total_to_charge__gt=0)
                 .order_by("total_to_charge")
@@ -31,7 +31,7 @@ class ReportView(APIView):
                 .first()
             )
 
-            # Obtener al técnico que cobró el monto más alto
+            # Técnico que cobró el monto más alto
             highest_charge_technician = (
                 Technician.objects.filter(total_to_charge__gt=0)
                 .order_by("-total_to_charge")
