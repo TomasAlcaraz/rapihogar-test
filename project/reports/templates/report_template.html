@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Helvetica', sans-serif;
+            margin: 20px;
+            background-color: #f8f9fa;
+        }
+
+        h3 {
+            margin-bottom: 20px;
+            color: #333;
+            font-family: 'Tahoma' (sans-serif);
+            border-bottom: 2px solid #003366; 
+            padding-bottom: 10px; 
+        }
+
+        h4 {
+            margin-bottom: 10px;
+            color: #333;
+            font-family: 'Arial', sans-serif; 
+            border-bottom: 2px solid #003366; 
+            padding-bottom: 5px; 
+        }
+
+        p, ul, li {
+            margin-bottom: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #003366; /* Verde */
+            color: #fff;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .context {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 2% 25%;
+        }
+    </style>
+    <title>Informe de técnicos</title>
+</head>
+<body>
+    <h3>Informe de técnicos</h3>
+    <div class="context">
+        <h4>Monto promedio cobrado por todos los técnicos:</h4>
+        <p>${{ average_charge|floatformat:0 }}</p>
+        
+        <h4>Datos de todos los técnicos que cobraron menos que el promedio:</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>Técnico</th>
+                    <th>Monto Cobrado</th>
+                    <th>Horas Trabajadas</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for technician in below_average_technicians %}
+                    <tr>
+                        <td>{{ technician.full_name }}</td>
+                        <td>${{ technician.total_to_charge|floatformat:0 }}</td>
+                        <td>{{ technician.hours_worked }}hs</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        <h4>El último trabajador ingresado que cobró el monto más bajo:</h4>
+        <p>${{ lowest_charge_technician.total_to_charge|floatformat:0 }}</p>
+        
+        <h4>El último trabajador ingresado que cobró el monto más alto:</h4>
+        <p>${{ highest_charge_technician.total_to_charge|floatformat:0 }}</p>
+    </div>
+</body>
+</html>

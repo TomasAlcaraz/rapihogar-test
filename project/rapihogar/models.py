@@ -63,6 +63,8 @@ class Company(models.Model):
         verbose_name_plural = _("Empresas")
 
 
+from django.db import models
+
 class Technician(models.Model):
     full_name = models.CharField(max_length=255)
     hours_worked = models.IntegerField(default=0)
@@ -86,6 +88,10 @@ class Technician(models.Model):
             return self.hours_worked * 300 * 0.83
         else:
             return self.hours_worked * 350 * 0.82
+
+    def save(self, *args, **kwargs):
+        self.total_to_charge = self.calculate_total_to_charge()
+        super(Technician, self).save(*args, **kwargs)
 
     class Meta:
         app_label = "rapihogar"
