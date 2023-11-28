@@ -63,8 +63,6 @@ class Company(models.Model):
         verbose_name_plural = _("Empresas")
 
 
-from django.db import models
-
 class Technician(models.Model):
     full_name = models.CharField(max_length=255)
     hours_worked = models.IntegerField(default=0)

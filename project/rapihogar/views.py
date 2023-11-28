@@ -13,10 +13,9 @@ class TechnicianListView(APIView):
     template_name = "technician_list.html"
 
     def get(self, request):
-        # Obtener el parámetro de búsqueda del nombre desde la consulta GET
+
         search_name = request.GET.get("search_name", "")
 
-        # Filtrar técnicos por parte del nombre
         technicians = Technician.objects.filter(Q(full_name__icontains=search_name))
 
         technician_data = []
