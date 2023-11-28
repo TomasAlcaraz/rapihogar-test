@@ -31,7 +31,7 @@ INSTALLED_APPS = [
     "django_extensions",
     "rapihogar",
     "api",
-    "pedidos"
+    "pedidos",
 ]
 
 MIDDLEWARE = [
@@ -49,7 +49,11 @@ ROOT_URLCONF = "rapihogar.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [
+            BASE_DIR / "rapihogar" / "templates",  # Ruta para las plantillas de la app1
+            BASE_DIR / "reports" / "templates",
+            BASE_DIR / "pedidos" / "templates",
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [

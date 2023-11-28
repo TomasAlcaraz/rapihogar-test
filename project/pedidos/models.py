@@ -4,6 +4,9 @@ from rapihogar.models import User, Scheme, Technician
 
 # Create your models here.
 class Pedido(models.Model):
+    def __str__(self):
+        return self.title
+    
     SOLICITUD = 0
     PEDIDO = 1
 

@@ -132,8 +132,8 @@
             {% for technician in technicians %}
                 <tr>
                     <td>{{ technician.full_name }}</td>
-                    <td>{{ technician.hours_worked }}</td>
-                    <td>{{ technician.total_to_charge }}</td>
+                    <td>{{ technician.hours_worked }}hs</td>
+                    <td>${{ technician.total_to_charge|floatformat:0 }}</td>
                     <td>{{ technician.num_orders }}</td>
                 </tr>
             {% endfor %}

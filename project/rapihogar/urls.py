@@ -7,4 +7,5 @@ urlpatterns = [
     path("api/", include("api.urls")),
     path("pedidos/", include("pedidos.urls")),
     path('technicians/', TechnicianListView.as_view(), name='technician-list'),
+    path("reports/", include("reports.urls"))
 ]
