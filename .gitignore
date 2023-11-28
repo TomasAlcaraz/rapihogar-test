@@ -37,3 +37,6 @@ Thumbs.db
 *.mov
 *.wmv
 
+.env
+/static
+__pycache__

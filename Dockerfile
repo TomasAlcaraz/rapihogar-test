@@ -5,7 +5,11 @@ WORKDIR /code
 COPY requirements.txt /code/
 RUN /usr/local/bin/python -m pip install --upgrade pip
 RUN pip install -r requirements.txt
-COPY . /code/
+RUN apt-get update \
+    && apt-get install -y libpq-dev
+RUN /usr/local/bin/python -m pip install --upgrade pip
+RUN pip install -r requirements.txt
+RUN apt-get update && apt-get install -y postgresql-client
+COPY ./project /code/
 
-
-
+CMD ["gunicorn", "-c", "config/gunicorn/conf.py", "--blind", ":8000", "--chdir", "rapihogar", "rapihogar.wsgi:application"]
