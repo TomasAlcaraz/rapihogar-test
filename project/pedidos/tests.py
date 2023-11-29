@@ -27,10 +27,3 @@ class PedidoViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Test Pedido")
         self.assertTemplateUsed(response, "pedido_list.html")
-
-    # def test_pedido_update_view(self):
-    #     pedido = Pedido.objects.get(id=1)
-    #     response = self.client.get(reverse("pedidos:pedido-update", args=[pedido.id]))
-    #     self.assertEqual(response.status_code, 200)
-    #     self.assertContains(response, "Editar")
-    #     self.assertTemplateUsed(response, "pedido_update.html")

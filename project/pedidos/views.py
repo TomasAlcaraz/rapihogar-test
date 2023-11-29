@@ -7,14 +7,16 @@ from .utils.update_forms import PedidoUpdateForm
 
 class PedidoListView(View):
     template_name = "pedido_list.html"
-
+    
     def get(self, request, *args, **kwargs):
-        context = {}
         pedidos = Pedido.objects.all()
+        context = {}    
         form = PedidoUpdateForm()
         context["pedidos"] = pedidos
-
-        return render(request, "pedido_list.html", context)
+        if pedidos.exists():
+            return render(request, "pedido_list.html", context)
+        else:
+            return render(request, "pedidos_error.html")
 
 
 class PedidoUpdateView(View):
