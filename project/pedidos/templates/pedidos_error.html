@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensaje de Error - Pedidos</title>
+    <style>
+        body {
+            font-family: 'Helvetica', sans-serif;
+            margin: 20px;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        h1 {
+            color: #d9534f;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #31708f;
+            font-weight: bold;
+        }
+
+        code {
+            background-color: #343a40; 
+            color: #ffffff; 
+            padding: 8px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid #ddd;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Error: No hay pedidos disponibles</h1>
+
+    <hr>
+
+    <p>Actualmente, no hay pedidos disponibles en el sistema. Puedes crear pedidos utilizando el siguiente comando:</p>
+
+    <code>docker-compose exec web python manage.py generar_pedidos</code>
+
+    <p>Después de ejecutar este comando, podrás recargar la página y ver los nuevos pedidos en el sistema.</p>
+
+    <p><a href="{% url 'home' %}">Volver al inicio</a>.</p>
+</body>
+</html>

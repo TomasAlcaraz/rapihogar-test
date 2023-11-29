@@ -48,7 +48,5 @@ class ReportView(APIView):
 
             return render(request, "report_template.html", context)
         else:
-            return Response(
-                {"error": "No hay técnicos disponibles"},
-                status=status.HTTP_404_NOT_FOUND,
-            )
+            return render(request, "report_error.html")
+
